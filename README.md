@@ -4,18 +4,13 @@ A lightweight java library (8 classes) for building javax.swing.tree.TreeNodes f
 # FileTreeBuilder
         TreeBuilderFactory treeBuilderFactory = new TreeBuilderFactoryImpl();
 
-        // For displaying each JTree
-        //
-        JScrollPane scrollPane  = new JScrollPane();
-        scrollPane.setBounds(0, 0, 300, 300);
-        
-        // FileTreeBuilder
+        // Get the directory whose content will be used to build the tree
         //
         File dir = new File(System.getProperty("user.home")+"/Documents");
 
         TreeBuilder<File> fileTreeBuilder = treeBuilderFactory.getInstance(TreeBuilderFactory.FILE);
         // This also works
-        //FileTreeBuilder fileTreeBuilder = treeBuilderFactory..getFileInstance(); 
+        // FileTreeBuilder fileTreeBuilder = treeBuilderFactory..getFileInstance(); 
 
         Filter<File> fileFilter = new Filter<File>() {
             @Override
@@ -30,18 +25,14 @@ A lightweight java library (8 classes) for building javax.swing.tree.TreeNodes f
 
         // Display the JTree
         //
-        scrollPane.setViewportView(fileTree);
+        JScrollPane scrollPane  = new JScrollPane(fileTree);
+        scrollPane.setBounds(0, 0, 300, 300);
         JOptionPane.showMessageDialog(null, scrollPane);
 
 # DOMTreeBuilder
         TreeBuilderFactory treeBuilderFactory = new TreeBuilderFactoryImpl();
 
-        // For displaying each JTree
-        //
-        JScrollPane scrollPane  = new JScrollPane();
-        scrollPane.setBounds(0, 0, 300, 300);
-        
-        // DocumentTreeBuilder 
+        // Load the document whose nodes will be used to build the tree 
         //
         Document doc = loadDocument(new File(System.getProperty("user.home")+"/Documents/Desktop/welcome.xml"));
 
@@ -55,17 +46,13 @@ A lightweight java library (8 classes) for building javax.swing.tree.TreeNodes f
 
         // Display the JTree
         //
-        scrollPane.setViewportView(documentTree);
+        JScrollPane scrollPane  = new JScrollPane(documentTree);
+        scrollPane.setBounds(0, 0, 300, 300);
         JOptionPane.showMessageDialog(null, scrollPane);
 
 # MapTreeBuilder
         TreeBuilderFactory treeBuilderFactory = new TreeBuilderFactoryImpl();
 
-        // For displaying each JTree
-        //
-        JScrollPane scrollPane  = new JScrollPane();
-        scrollPane.setBounds(0, 0, 300, 300);
-        
         // MapTreeBuilder
         //
         MapTreeBuilder mapTreeBuilder = treeBuilderFactory.getMapInstance();
@@ -86,5 +73,6 @@ A lightweight java library (8 classes) for building javax.swing.tree.TreeNodes f
 
         // Display the JTree
         //
-        scrollPane.setViewportView(mapTree);
+        JScrollPane scrollPane  = new JScrollPane(mapTree);
+        scrollPane.setBounds(0, 0, 300, 300);
         JOptionPane.showMessageDialog(null, scrollPane);
