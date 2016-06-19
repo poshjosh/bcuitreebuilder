@@ -45,6 +45,7 @@ public class ReadMe {
         //
         scrollPane.setViewportView(documentTree);
         JOptionPane.showMessageDialog(null, scrollPane);
+
         
         // FileTreeBuilder
         //
@@ -52,7 +53,7 @@ public class ReadMe {
 
         TreeBuilder<File> fileTreeBuilder = treeBuilderFactory.getInstance(TreeBuilderFactory.FILE);
         // This also works
-        //FileTreeBuilder fileTreeBuilder = treeBuilderFactory.getFileInstance(); 
+        //FileTreeBuilder fileTreeBuilder = treeBuilderFactory..getFileInstance(); 
 
         Filter<File> fileFilter = new Filter<File>() {
             @Override
