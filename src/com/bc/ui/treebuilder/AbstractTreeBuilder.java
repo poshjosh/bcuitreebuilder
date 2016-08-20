@@ -20,9 +20,8 @@ import javax.swing.tree.MutableTreeNode;
  * @param <E>
  * @since    2.0
  */
-public abstract class AbstractTreeBuilder<E>
-  implements TreeBuilder<E>
-{
+public abstract class AbstractTreeBuilder<E> implements TreeBuilder<E> {
+    
   final Class<? extends MutableTreeNode> treeNodeClass;
   
   protected AbstractTreeBuilder()
@@ -124,9 +123,9 @@ public abstract class AbstractTreeBuilder<E>
   {
     try
     {
-      Constructor<? extends MutableTreeNode> constructor = treeNodeClass.getConstructor(new Class[0]);
+      Constructor<? extends MutableTreeNode> constructor = treeNodeClass.getConstructor();
       
-      return (MutableTreeNode)constructor.newInstance(new Object[0]);
+      return (MutableTreeNode)constructor.newInstance();
 
     }
     catch (NoSuchMethodException|SecurityException|InstantiationException|IllegalAccessException|IllegalArgumentException|InvocationTargetException e)

@@ -29,8 +29,7 @@ import javax.swing.tree.MutableTreeNode;
  * @version  2.0
  * @since    2.0
  */
-public class MapTreeBuilder
-  extends AbstractTreeBuilder<Map.Entry>
+public class MapTreeBuilder extends AbstractTreeBuilder<Map.Entry>
 {
   public MapTreeBuilder() {}
   
@@ -40,11 +39,10 @@ public class MapTreeBuilder
   }
   
   public MutableTreeNode build(Map m) {
-    return build(getRootNode(null, m), null);
+    return build(this.createRootEntry(m), null);
   }
 
-  public Map.Entry getRootNode(Object key, Map data)
-  {
+  public Map.Entry getRootNode(Object key, Map data) {
     if (key == null) {
       key = "";
     }
