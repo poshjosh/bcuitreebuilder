@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTree;
@@ -29,22 +30,30 @@ public class ReadMe {
         JScrollPane scrollPane  = new JScrollPane();
         scrollPane.setBounds(0, 0, 300, 300);
         
-        // DocumentTreeBuilder 
-        //
-        Document doc = loadDocument(new File(System.getProperty("user.home")+"/Documents/Desktop/welcome.xml"));
+        final JFileChooser chooser = new JFileChooser();
+        chooser.setMultiSelectionEnabled(false);
+        chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+        chooser.setDialogTitle("Select HTML/XML file");
+        final int selection = chooser.showDialog(null, "View Document Structure");
+        if(selection == JFileChooser.APPROVE_OPTION) {
+           
+            // DocumentTreeBuilder 
+            //
+            Document doc = loadDocument(chooser.getSelectedFile());
 
-        DOMTreeBuilder domTreeBuilder = treeBuilderFactory.getDOMInstance();
+            DOMTreeBuilder domTreeBuilder = treeBuilderFactory.getDOMInstance();
 
-        Filter<Node> nodeFilter = null; // May be null
+            Filter<Node> nodeFilter = null; // May be null
 
-        TreeNode docRootNode = domTreeBuilder.build(doc, nodeFilter);
+            TreeNode docRootNode = domTreeBuilder.build(doc, nodeFilter);
 
-        JTree documentTree = new JTree(docRootNode);
+            JTree documentTree = new JTree(docRootNode);
 
-        // Display the JTree
-        //
-        scrollPane.setViewportView(documentTree);
-        JOptionPane.showMessageDialog(null, scrollPane);
+            // Display the JTree
+            //
+            scrollPane.setViewportView(documentTree);
+            JOptionPane.showMessageDialog(null, scrollPane);
+        }
         
         // FileTreeBuilder
         //
